@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Login Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #EDE7F6;
+  }
+
+  .login-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .login-header {
+      text-align: center;
+  }
+
+  .login-logo {
+      width: 120px; /* Adjust as needed */
+      margin-bottom: 20px;
+  }
+
+  h2 {
+      color: #5C6BC0; /* Adjust to match your logo */
+      margin-bottom: 0.5em;
+  }
+
+  .login-form {
+      width: 400px; /* Adjust as needed */
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group {
+      margin-bottom: 15px;
+  }
+
+  .btn-primary {
+      background-color: #7E57C2; /* Purple */
+      color: white;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 5px;
+  }
+
+  .btn-primary:hover {
+      opacity: 0.8;
+  }
+
+  .bottom {
+      color: #5C6BC0; /* Adjust to match your logo */
+      text-decoration: none;
+  }
+
+  .bottom:hover {
+      text-decoration: underline;
+  }
+
+  /* Additional styles to remove Bootstrap's default styling */
+  input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 20px 0;
+      border: none;
+      background: #f1f1f1;
+  }
+</style>
+</head>
+<body>
+<div class="login-container">
+    <div class="login-header">
+        <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo" class="login-logo">
+        <h2>User Login</h2>
+    </div>
+    <form class="login-form" action="{{ url_for('login') }}" method="post">
+        <div class="form-group">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+        <p class="text-center">Don't have an account? <a class="bottom" href="{{url_for('register')}}">Register here</a></p>
+    </form>
+</div>
+</body>
+</html>
+
