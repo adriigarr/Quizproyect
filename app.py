@@ -11,7 +11,7 @@ app.secret_key = 'your_super_secret_key'  # Change this to a random secret key
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''  # Your MySQL password (if set)
-app.config['MYSQL_DB'] = 'Quizs'  # Your database name
+app.config['MYSQL_DB'] = 'testing'  # Your database name
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 app.config['MYSQL_UNIX_SOCKET'] = '/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock'
 
