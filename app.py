@@ -74,5 +74,11 @@ def register():
             message = 'You have successfully registered!'
     return render_template('register.html', message=message)
 
+# Define the route for pregunta1
+@app.route('/pregunta1')
+def pregunta1():
+    # Your logic for the quiz page
+    return render_template('pregunta1.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
