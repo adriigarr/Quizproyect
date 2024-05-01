@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interface</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #dcdcf1; /* Light purple background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quiz-container {
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Start from the top */
+            align-items: center; /* Center horizontally */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Logo at the left */
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            width: 70px; /* Logo size */
+            height: 70px;
+            background-image: url('/static/logo.png'); /* Your logo URL */
+            background-size: cover;
+            border-radius: 50%; /* Circular logo */
+            margin-right: 20px; /* Space after logo */
+        }
+
+        .question-box {
+            text-align: center;
+            width: 80%; /* Full width */
+            max-width: 800px; /* Maximum width */
+            background-color: #ffffff; /* White background for the question */
+            padding: 20px; /* Padding inside the question box */
+            margin-top: 20px; /* Margin from header */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        .question-count {
+            font-size: 1.5rem;
+            color: #555;
+        }
+
+        .question {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333; /* Darker text color */
+        }
+
+        .answers {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 80%; /* Aligns with the question box */
+            max-width: 800px; /* Aligns with the question box */
+            margin-top: 30px; /* Space between questions and answers */
+        }
+
+        .answers button {
+            padding: 20px; /* Larger padding */
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #f1f1f3;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.5rem;
+        }
+
+        .answers button:hover {
+            background-color: #e2e2e2;
+            border-color: #bbb;
+        }
+
+        .next-btn {
+            padding: 15px;
+            background-color: #8383e6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 200px; /* Fixed width */
+            align-self: center; /* Center the button */
+            margin-top: 20px;
+            font-size: 1.5rem;
+        }
+
+        .next-btn:hover {
+            background-color: #7070d6;
+        }
+
+        .next-btn.disabled {
+            background-color: lightgray;
+            cursor: not-allowed;
+        }
+
+        .answers button.correct {
+            background-color: green; /* Green background for correct answers */
+            color: white; /* White text color */
+        }
+
+        .answers button.incorrect {
+            background-color: #E44A2A; /* Red background for incorrect answers */
+            color: white; /* White text color */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <header>
+            <div class="logo"></div> <!-- Logo placeholder -->
+        </header>
+        <div class="question-box">
+            <div class="question-count">Pregunta 1 de 3</div>
+            <div class="question">
+                <p>¿Cuál es la capital de Alemania?</p>
+            </div>
+        </div>
+        <div class="answers">
+            <button onclick="selectAnswer(this, false)">Munich</button>
+            <button onclick="selectAnswer(this, false)">Berlin</button>
+            <button onclick="selectAnswer(this, true)">Stuttgart</button>
+            <button onclick="selectAnswer(this, false)">Dortmund</button>
+        </div>
+        <button class="next-btn disabled" disabled onclick="window.location.href='{{ url_for('pregunta1') }}'">Next Question</button>
+    </div>
+
+    <script>
+        function selectAnswer(button, isCorrect) {
+            const answers = document.querySelectorAll('.answers button');
+            answers.forEach(btn => {
+                btn.disabled = true; // Disable all buttons after an answer is selected
+                btn.classList.remove('correct', 'incorrect'); // Remove any existing classes
+            });
+
+            if (isCorrect) {
+                button.classList.add('correct'); // Add 'correct' class if the answer is correct
+            } else {
+                button.classList.add('incorrect'); // Add 'incorrect' class if the answer is incorrect
+            }
+
+            const nextButton = document.querySelector('.next-btn');
+            nextButton.classList.remove('disabled'); // Enable the next button
+            nextButton.disabled = false;
+        }
+    </script>
+</body>
+</html>
+

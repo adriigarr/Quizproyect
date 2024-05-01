@@ -80,5 +80,19 @@ def pregunta1():
     # Your logic for the quiz page
     return render_template('pregunta1.html')
 
+
+# Define the route for pregunta1
+@app.route('/pregunta2')
+def pregunta1():
+    # Your logic for the quiz page
+    return render_template('pregunta2.html')
+
+
+# Define the route for pregunta1
+@app.route('/pregunta3')
+def pregunta1():
+    # Your logic for the quiz page
+    return render_template('pregunta3.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
