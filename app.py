@@ -83,14 +83,14 @@ def pregunta1():
 
 # Define the route for pregunta1
 @app.route('/pregunta2')
-def pregunta1():
+def pregunta2():
     # Your logic for the quiz page
     return render_template('pregunta2.html')
 
 
 # Define the route for pregunta1
 @app.route('/pregunta3')
-def pregunta1():
+def pregunta3():
     # Your logic for the quiz page
     return render_template('pregunta3.html')
 
