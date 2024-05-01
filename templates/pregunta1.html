@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interface</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #dcdcf1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .quiz-container {
+            background: #fff;
+            width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: #e2e2f9;
+            padding: 10px 20px;
+            text-align: center;
+            color: #555;
+        }
+
+        .question-box {
+            padding: 20px;
+        }
+
+        .question-count {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .answers button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f1f1f3;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .answers button:hover {
+            background-color: #e2e2e2;
+        }
+
+        .next-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #8383e6;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .time {
+            font-size: 1rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <header>
+            <div class="time">11:45</div>
+        </header>
+        <div class="question-box">
+            <div class="question-count">Pertanyaan 1 dari 10</div>
+            <p class="question">Siapa pengarang Jurassic Park yang mengantongi ijazah dokter dari Harvard University dengan predikat Summa Cum Laude?</p>
+            <div class="answers">
+                <button>Michael Crichton</button>
+                <button>Nicholas Sparks</button>
+                <button>James Redfield</button>
+                <button>David Guterson</button>
+            </div>
+            <button class="next-btn">Selanjutnya</button>
+        </div>
+    </div>
+</body>
+</html>
