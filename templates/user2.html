@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  color: #5A5A5A;
+  background-color: #fff;
+}
+.container-fluid, .row {
+  height: 100%;
+}
+.sidebar {
+  background: lightblue;
+  color: #fff;
+  height: 100%;
+}
+.sidebar-logo {
+  padding: 10px;
+  background: lightblue;
+  display: flex;
+  align-items: center;
+}
+.sidebar-logo img {
+  max-height: 60px;
+}
+.logo-text {
+  margin-left: 10px;
+  color: #7e57c2;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.sidebar .nav-link {
+  color: #7e57c2;
+  margin: 10px 0;
+}
+.sidebar .nav-link:hover {
+  color: #ffffff;
+  background: #6a1b9a;
+  border-radius: 5px;
+}
+.sidebar .nav-link.active {
+  color: #fff;
+  background: #7e57c2;
+  border-radius: 5px;
+}
+.profile-widget {
+  text-align: center;
+  padding: 20px;
+  background: #7e57c2;
+  color: #fff;
+  border-radius: 10px;
+}
+.profile-widget img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  margin-bottom: 10px;
+}
+.quiz-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+.card img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: auto;
+  max-width: 50%;
+}
+.card-title {
+  font-weight: bold;
+}
+a, a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.quiz-card {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.quiz-card img {
+  width: 33.3333%;
+  height: auto;
+  object-fit: cover;
+}
+.quiz-card-body {
+  flex: 1;
+  padding: 1rem;
+}
+.right-sidebar {
+  background: #f8f9fa;
+  border-left: 1px solid #dee2e6;
+  padding-top: 20px;
+}
+.widget {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+}
+.widget h5 {
+  margin-bottom: 15px;
+}
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 80%;
+  max-height: 250px;
+}
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+}
+.circle {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0, 100;
+  }
+}
+.percentage {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.5em;
+  text-anchor: middle;
+  fill: #7e57c2;
+}
+.right-sidebar-sticky {
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 20px);
+  overflow-x: hidden;
+}
+.btn-purple {
+  color: #fff;
+  background-color: #7e57c2;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
+.btn-lg {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+.modal-lg {
+    max-width: 75% !important;
+    width: 75% !important;
+}
+.modal-dialog {
+    margin: 5% auto;
+    height: 80%;
+}
+.modal-content {
+    height: 100%;
+}
+.widget h5 {
+  color: #7e57c2;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.current-date h1 {
+  color: #7e57c2;
+  font-size: 1.4em;
+  font-weight: 300;
+  text-align: center;
+}
+.week-days {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 10px 0;
+  color: #7e57c2;
+}
+.weeks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.weeks div {
+  display: flex;
+  justify-content: space-around;
+}
+.weeks span {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+}
+.weeks span.active {
+  background-color: #7e57c2;
+  border-radius: 50%;
+}
+.weeks span.event::after {
+  content: '•';
+  position: absolute;
+  color: #f78536;
+  font-size: larger;
+  top: 0;
+  right: 0;
+}
+.last-month {
+  color: #bbb;
+}
+@media (max-width: 992px) {
+  .right-sidebar {
+    font-size: 14px;
+  }
+  .current-date h1 {
+    font-size: 1.2em;
+  }
+  .week-days {
+    padding: 5px 0;
+  }
+  .weeks span {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .right-sidebar {
+    font-size: 12px;
+  }
+  .current-date h1 {
+    font-size: 1em;
+  }
+  .week-days {
+    padding: 2px 0;
+  }
+  .weeks span {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <!-- Sidebar -->
+    <nav class="col-12 col-md-3 col-lg-2 d-md-block sidebar collapse">
+      <div class="sidebar-logo d-flex align-items-center">
+        <img src="/static/logo.png" alt="Logo">
+        <span class="logo-text">Quizs</span>
+      </div>
+      <div class="sidebar-sticky">
+        <div class="profile-widget">
+          <img src="/static/avatarFemale.png" alt="Profile Image">
+          <h6>Christine Eva</h6>
+        </div>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">All Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Messages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Friends</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Settings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Log out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main role="main" class="col-12 col-md-6 col-lg-8 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">My Quizzes</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <button class="btn btn-purple btn-lg" id="create-quiz-button">Create New Quiz</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="quiz-card">
+            <img src="/static/quizImage01.jpg" alt="Quiz Image">
+            <div class="quiz-card-body">
+              <h5 class="card-title">Quiz Template</h5>
+              <p class="card-text">Click here to see how to create a quiz! </p>
+              <a class="btn btn-purple btn-lg" href="{{ url_for('pregunta1') }}">Go to Quiz</a>
+            </div>
+          </div>
+
+          <div class="quiz-card">
+            <img src="/static/quizImage01.jpg" alt="Quiz Image">
+            <div class="quiz-card-body">
+              <h5 class="card-title">Capital cities of Europe </h5>
+              <p class="card-text"> Test your knowledge and see if you know the capitals of Europe </p>
+              <a class="btn btn-purple btn-lg" href="{{ url_for('pregunta1') }}">Go to Quiz</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside class="col-12 col-md-3 col-lg-2 d-none d-md-block right-sidebar">
+      <div class="right-sidebar-sticky">
+        <div class="widget">
+          <h5>Calendar</h5>
+          <div class="current-date">
+            <h1>Friday 15th</h1>
+            <h1>January 2016</h1>
+          </div>
+          <div class="current-month">
+            <ul class="week-days">
+              <li>MON</li>
+              <li>TUE</li>
+              <li>WED</li>
+              <li>THU</li>
+              <li>FRI</li>
+              <li>SAT</li>
+              <li>SUN</li>
+            </ul>
+            <div class="weeks">
+              <div class="first"> <span class="last-month">28</span> <span class="last-month">29</span> <span class="last-month">30</span> <span class="last-month">31</span> <span>01</span> <span>02</span> <span>03</span> </div>
+              <div class="second"> <span>04</span> <span>05</span> <span class="event">06</span> <span>07</span> <span>08</span> <span>09</span> <span>10</span> </div>
+              <div the="third"> <span>11</span> <span>12</span> <span>13</span> <span>14</span> <span class="active">15</span> <span>16</span> <span>17</span> </div>
+              <div class="fourth"> <span>18</span> <span>19</span> <span>20</span> <span>21</span> <span>22</span> <span>23</span> <span>24</span> </div>
+              <div class="fifth"> <span>25</span> <span>26</span> <span>27</span> <span>28</span> <span>29</span> <span>30</span> <span>31</span> </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget">
+          <h5>Quiz Progress</h5>
+          <div class="progress-circle">
+            <svg viewBox="0 0 36 36" class="circular-chart">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                fill="none"
+                stroke="#eee"
+                stroke-width="3.8"
+                stroke-linecap="round"
+              />
+              <path class="circle"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                fill="none"
+                stroke="#7e57c2"
+                stroke-width="3.8"
+                stroke-dasharray="84, 100"
+                stroke-linecap="round"
+              />
+              <text x="18" y="20.35" class="percentage">84%</text>
+            </svg>
+          </div>
+            <div class="progress-circle">
+            <svg viewBox="0 0 36 36" class="circular-chart">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                fill="none"
+                stroke="#eee"
+                stroke-width="3.8"
+                stroke-linecap="round"
+              />
+              <path class="circle"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                fill="none"
+                stroke="#7e57c2"
+                stroke-width="3.8"
+                stroke-dasharray="84, 100"
+                stroke-linecap="round"
+              />
+              <text x="18" y="20.35" class="percentage">66%</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="quizCreationModal" tabindex="-1" role="dialog" aria-labelledby="quizCreationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="quizCreationModalLabel">Create New Quiz</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="quiz-form">
+          <div class="form-group">
+            <label for="quizName">Quiz Name:</label>
+            <input type="text" class="form-control" id="quizName" placeholder="Enter quiz name">
+          </div>
+          <div class="form-group">
+            <label for="quizDescription">Description:</label>
+            <input type="text" class="form-control" id="quizDescription" placeholder="Describe your quiz">
+          </div>
+          <div class="form-group">
+            <label for="quizType">Quiz Type:</label>
+            <select class="form-control" id="quizType">
+              <option value="multipleChoice">Multiple Choice</option>
+              <!-- Add other types as necessary -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="quizInfo">Quiz Information:</label>
+            <textarea class="form-control" id="quizInfo" rows="5" placeholder="Enter detailed quiz information"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-purple" onclick="saveQuiz()">Save Changes</button>
+        <button type="button" class="btn btn-purple" onclick="window.location.href='{{ url_for('pregunta1') }}'">Play Quiz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#create-quiz-button').click(function() {
+      $('#quizCreationModal').modal('show');
+    });
+
+    // Update progress bars dynamically
+    $('.circle').each(function() {
+      var $this = $(this);
+      var percentage = $this.parent().find('.percentage').text().slice(0, -1);
+      var circumference = 2 * Math.PI * 15.9155;
+      var progress = circumference * (percentage / 100);
+      $this.css('stroke-dasharray', progress + ' ' + circumference);
+    });
+  });
+
+  function saveQuiz() {
+    // You might want to collect data here and send it to your server
+    alert('Quiz saved successfully!');
+  }
+
+</script>
+</body>
+</html>
+
+<!-- {{ url_for('pregunta1') }} -->

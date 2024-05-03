@@ -117,5 +117,13 @@ def user():
     return render_template('user.html')
 
 
+# Define the route for dashboard
+@app.route('/user2')
+def user2():
+    # Your logic for the quiz page
+    return render_template('user2.html')
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
