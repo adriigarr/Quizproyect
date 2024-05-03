@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations Page</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #dcdcf1; /* Set to any specific purple shade you like */
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 48px; /* Larger font size */
+            font-weight: bold; /* Bold text */
+            margin: 0; /* Removes default margin */
+            color: black; /* Adjust text color for contrast */
+        }
+
+        .header p {
+            font-size: 32px; /* Larger font size for paragraph */
+            color: black; /* Adjust text color for contrast */
+            margin: 0.5em 0; /* Compact vertical spacing */
+        }
+
+        .logo {
+            position: absolute;
+            top: 10px; /* Distance from the top of the page */
+            left: 10px; /* Distance from the left side of the page */
+            width: 70px;
+            height: 70px;
+            background-image: url('/static/logo.png'); /* Ensure this path is correct */
+            background-size: cover;
+            border-radius: 50%;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center; /* Center buttons horizontally */
+            margin-top: 10px; /* Distance from text */
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #8383e6;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px; /* Larger button text */
+            border-radius: 5px;
+            width: 180px; /* Fixed width */
+            height: 50px;
+        }
+
+        button:hover {
+            background-color: #7070d6;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo"></div> <!-- Logo at the top left -->
+    <div class="container">
+        <div class="header">
+            <h1>Congratulations!</h1>
+            <p>You got 2/3 answers correct</p>
+        </div>
+        <div class="buttons">
+            <button onclick="location.href='{{ url_for('pregunta1') }}'">Retake Quiz</button>
+            <button onclick="location.href='{{ url_for('user') }}'">Finish Quiz</button>
+        </div>
+    </div>
+</body>
+</html>

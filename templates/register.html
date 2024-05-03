@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign Up</title>
 <style>
-body, h1, h2, p, button, input, label {
+body {
+  position: relative; /* Ensures the logo can be positioned absolutely within it */
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -106,9 +107,18 @@ body, h1, h2, p, button, input, label {
   background-color: #6a1b9a;
   transition: background-color 0.3s ease;
 }
+#logo {
+  position: absolute;
+  top: 10px; /* Adjust the value as needed */
+  left: 10px; /* Adjust the value as needed */
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* Keeps the aspect ratio of the image */
+}
 </style>
 </head>
 <body>
+
+<img src="/static/logo.png" alt="Your Logo" id="logo">
 
 <div class="signup-container">
   <div class="left-panel">
@@ -136,8 +146,5 @@ body, h1, h2, p, button, input, label {
   </div>
 </div>
 
-
 </body>
 </html>
-
-

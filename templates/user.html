@@ -6,176 +6,172 @@
 <title>User Dashboard</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-  <style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Open Sans', sans-serif;
-    color: #5A5A5A;
-    background-color: #fff;
-  }
-  .container-fluid, .row {
-    height: 100%;
-  }
-  .sidebar {
-    background: lightblue;
-    color: #fff;
-    height: 100%;
-  }
-  .sidebar-logo {
-    padding: 10px;
-    background: lightblue;
+<style>
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  color: #5A5A5A;
+  background-color: #fff;
+}
+.container-fluid, .row {
+  height: 100%;
+}
+.sidebar {
+  background: lightblue;
+  color: #fff;
+  height: 100%;
+}
+.sidebar-logo {
+  padding: 10px;
+  background: lightblue;
+  display: flex;
+  align-items: center;
+}
+.sidebar-logo img {
+  max-height: 60px;
+}
+.logo-text {
+  margin-left: 10px;
+  color: #7e57c2;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.sidebar .nav-link {
+  color: #7e57c2;
+  margin: 10px 0;
+}
+.sidebar .nav-link:hover {
+  color: #ffffff;
+  background: #6a1b9a;
+  border-radius: 5px;
+}
+.sidebar .nav-link.active {
+  color: #fff;
+  background: #7e57c2;
+  border-radius: 5px;
+}
+.profile-widget {
+  text-align: center;
+  padding: 20px;
+  background: #7e57c2;
+  color: #fff;
+  border-radius: 10px;
+}
+.profile-widget img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  margin-bottom: 10px;
+}
+.quiz-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+.card img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: auto;
+  max-width: 50%;
+}
+.card-title {
+  font-weight: bold;
+}
+a, a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.quiz-card {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.quiz-card img {
+  width: 33.3333%;
+  height: auto;
+  object-fit: cover;
+}
+.quiz-card-body {
+  flex: 1;
+  padding: 1rem;
+}
+.right-sidebar {
+  background: #f8f9fa;
+  border-left: 1px solid #dee2e6;
+  padding-top: 20px;
+}
+.widget {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+}
+.widget h5 {
+  margin-bottom: 15px;
+}
+.progress {
+  height: 1rem;
+  background-color: #e9ecef;
+  border-radius: 0.5rem;
+}
+.progress-bar {
+  background-color: #7e57c2;
+}
+.widget .progress-percentage {
+  text-align: right;
+  margin-bottom: 10px;
+}
+.right-sidebar-sticky {
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 20px);
+  overflow-x: hidden;
+}
+@media (min-width: 992px) {
+  .main-content {
     display: flex;
-    align-items: center;
+    flex-wrap: nowrap;
   }
-  .sidebar-logo img {
-    max-height: 60px;
+  .quizzes-section {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
   }
-  .logo-text {
-    margin-left: 10px;
-    color: #7e57c2;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  .sidebar .nav-link {
-    color: #7e57c2;
-    margin: 10px 0;
-  }
-  .sidebar .nav-link:hover {
-    color: #ffffff;
-    background: #6a1b9a;
-    border-radius: 5px;
-  }
-  .sidebar .nav-link.active {
-    color: #fff;
-    background: #7e57c2;
-    border-radius: 5px;
-  }
-  .profile-widget {
-    text-align: center;
-    padding: 20px;
-    background: #7e57c2;
-    color: #fff;
-    border-radius: 10px;
-  }
-  .profile-widget img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    margin-bottom: 10px;
-  }
-
-  .quiz-card:hover {
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  }
-  .card img {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    height: auto;
-    max-width: 50%;
-  }
-
-  .card-title {
-    font-weight: bold;
-  }
-
-  a, a:hover {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  /* New styles for card layout */
-  .quiz-card {
-    display: flex; /* Enables flexbox */
-    align-items: center; /* Centers items vertically */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    overflow: hidden; /* Ensures the image does not break the border-radius */
-  }
-
-  .quiz-card img {
-    width: 33.3333%; /* Image takes up one-third of the card */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Ensures the image covers the area */
-  }
-
-  .quiz-card-body {
-    flex: 1; /* Takes up the remaining space */
-    padding: 1rem; /* Padding inside the card body */
-  }
-
- /* Additional styles for right sidebar widgets */
   .right-sidebar {
-    background: #f8f9fa; /* Light grey background */
-    border-left: 1px solid #dee2e6; /* Divider */
-    padding-top: 20px; /* Space from the top */
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
   }
-  .widget {
-    background: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
-  }
-  .widget h5 {
-    margin-bottom: 15px;
-  }
-  .progress {
-    height: 1rem;
-    background-color: #e9ecef;
-    border-radius: 0.5rem;
-  }
-  .progress-bar {
-    background-color: #7e57c2; /* Use a color that matches your theme */
-  }
-  .widget .progress-percentage {
-    text-align: right;
-    margin-bottom: 10px;
-  }
-
-  /* Ensure the right sidebar takes full height */
-  .right-sidebar-sticky {
-    position: sticky;
-    top: 0;
-    height: calc(100vh - 20px); /* Adjust the top value based on actual header height */
-    overflow-x: hidden;
-  }
-
-    /* Adjustments for responsive behavior */
-  @media (min-width: 992px) { /* Adjust for md screens and up */
-    .main-content {
-      display: flex;
-      flex-wrap: nowrap;
-    }
-    .quizzes-section {
-      flex: 0 0 66.66667%; /* 8 out of 12 columns */
-      max-width: 66.66667%;
-    }
-    .right-sidebar {
-      flex: 0 0 33.33333%; /* 4 out of 12 columns */
-      max-width: 33.33333%;
-    }
-  }
-  /* Add this new CSS for the custom button styling */
+}
 .btn-purple {
   color: #fff;
-  background-color: #7e57c2; /* Adjust the color to match the 'Go to Quiz' button */
-  border: none; /* No border for the button */
-  padding: 10px 20px; /* Adjust padding to match the size in the image */
-  border-radius: 20px; /* Rounded corners */
-  font-size: 1rem; /* Adjust font-size as needed */
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2); /* Optional: adds a slight shadow for depth */
+  background-color: #7e57c2;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
-
-/* Ensures the button isn't too small on smaller screens */
 .btn-lg {
   padding: 10px 20px;
   font-size: 1rem;
 }
+.modal-lg {
+    max-width: 75% !important; /* 75% of the viewport width */
+    width: 75% !important; /* 75% of the viewport width */
+}
 
+.modal-dialog {
+    margin: 5% auto; /* Adjust top margin to center vertically */
+    height: 80%; /* 75% of the viewport height */
+}
+
+.modal-content {
+    height: 100%; /* 100% of .modal-dialog height */
+}
 </style>
 
 </head>
@@ -217,7 +213,7 @@
     </nav>
 
     <!-- Main content -->
-    <main role="main" class="col-md-6 col-lg-30 px-4">
+    <main role="main" class="col-md-6 col-lg-8 px-4">
       <!-- Dashboard Header -->
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">My Quizzes</h1>
@@ -269,11 +265,37 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="quizCreationModal" tabindex="-1" role="dialog" aria-labelledby="quizCreationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="quizCreationModalLabel">Create New Quiz</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Here you can add forms or any input fields required for creating a new quiz.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-purple">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#create-quiz-button').click(function() {
+      $('#quizCreationModal').modal('show');
+    });
+  });
+</script>
 
 </body>
 </html>
-
-
