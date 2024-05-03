@@ -9,9 +9,9 @@
             height: 100%;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #dcdcf1; /* Set to any specific purple shade you like */
+            background-color: #dcdcf1;
+            overflow: hidden;
         }
-
         .container {
             height: 100vh;
             display: flex;
@@ -19,37 +19,32 @@
             justify-content: center;
             align-items: center;
         }
-
         .header h1 {
-            font-size: 48px; /* Larger font size */
-            font-weight: bold; /* Bold text */
-            margin: 0; /* Removes default margin */
-            color: black; /* Adjust text color for contrast */
+            font-size: 48px;
+            font-weight: bold;
+            margin: 0;
+            color: black;
         }
-
         .header p {
-            font-size: 32px; /* Larger font size for paragraph */
-            color: black; /* Adjust text color for contrast */
-            margin: 0.5em 0; /* Compact vertical spacing */
+            font-size: 32px;
+            color: black;
+            margin: 0.5em 0;
         }
-
         .logo {
             position: absolute;
-            top: 10px; /* Distance from the top of the page */
-            left: 10px; /* Distance from the left side of the page */
+            top: 10px;
+            left: 10px;
             width: 70px;
             height: 70px;
-            background-image: url('/static/logo.png'); /* Ensure this path is correct */
+            background-image: url('/static/logo.png');
             background-size: cover;
             border-radius: 50%;
         }
-
         .buttons {
             display: flex;
-            justify-content: center; /* Center buttons horizontally */
-            margin-top: 10px; /* Distance from text */
+            justify-content: center;
+            margin-top: 10px;
         }
-
         button {
             margin: 5px;
             padding: 10px 20px;
@@ -57,19 +52,23 @@
             color: white;
             border: none;
             cursor: pointer;
-            font-size: 16px; /* Larger button text */
+            font-size: 16px;
             border-radius: 5px;
-            width: 180px; /* Fixed width */
+            width: 180px;
             height: 50px;
         }
-
         button:hover {
             background-color: #7070d6;
+        }
+        /* Keyframes for confetti fall */
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <div class="logo"></div> <!-- Logo at the top left -->
+    <div class="logo"></div>
     <div class="container">
         <div class="header">
             <h1>Congratulations!</h1>
@@ -80,5 +79,31 @@
             <button onclick="location.href='{{ url_for('user') }}'">Finish Quiz</button>
         </div>
     </div>
+
+    <script>
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.top = `${Math.random() * window.innerHeight}px`;
+            confetti.style.left = `${Math.random() * window.innerWidth}px`;
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confetti.style.zIndex = '9999';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.opacity = Math.random() + 0.5;
+            confetti.style.transform = `scale(${Math.random() + 0.5})`;
+
+            // Apply animation
+            confetti.style.animation = `confetti-fall ${Math.random() * 3 + 2}s linear infinite`;
+
+            document.body.appendChild(confetti);
+        }
+
+        // Create 100 confetti pieces
+        for (let i = 0; i < 100; i++) {
+            createConfetti();
+        }
+    </script>
 </body>
 </html>

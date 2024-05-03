@@ -114,37 +114,38 @@ a, a:hover {
 .widget h5 {
   margin-bottom: 15px;
 }
-.progress {
-  height: 1rem;
-  background-color: #e9ecef;
-  border-radius: 0.5rem;
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 80%;
+  max-height: 250px;
 }
-.progress-bar {
-  background-color: #7e57c2;
+.circle-bg {
+  fill: none;
+  stroke: #eee;
 }
-.widget .progress-percentage {
-  text-align: right;
-  margin-bottom: 10px;
+.circle {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0, 100;
+  }
+}
+.percentage {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.5em;
+  text-anchor: middle;
+  fill: #7e57c2;
 }
 .right-sidebar-sticky {
   position: sticky;
   top: 0;
   height: calc(100vh - 20px);
   overflow-x: hidden;
-}
-@media (min-width: 992px) {
-  .main-content {
-    display: flex;
-    flex-wrap: nowrap;
-  }
-  .quizzes-section {
-    flex: 0 0 66.66667%;
-    max-width: 66.66667%;
-  }
-  .right-sidebar {
-    flex: 0 0 33.33333%;
-    max-width: 33.33333%;
-  }
 }
 .btn-purple {
   color: #fff;
@@ -160,17 +161,15 @@ a, a:hover {
   font-size: 1rem;
 }
 .modal-lg {
-    max-width: 75% !important; /* 75% of the viewport width */
-    width: 75% !important; /* 75% of the viewport width */
+    max-width: 75% !important;
+    width: 75% !important;
 }
-
 .modal-dialog {
-    margin: 5% auto; /* Adjust top margin to center vertically */
-    height: 80%; /* 75% of the viewport height */
+    margin: 5% auto;
+    height: 80%;
 }
-
 .modal-content {
-    height: 100%; /* 100% of .modal-dialog height */
+    height: 100%;
 }
 </style>
 
@@ -217,14 +216,14 @@ a, a:hover {
       <!-- Dashboard Header -->
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">My Quizzes</h1>
-          <div class="btn-toolbar mb-2 mb-md-0">
-            <button class="btn btn-purple btn-lg" id="create-quiz-button">
-              Create New Quiz
-            </button>
-          </div>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <button class="btn btn-purple btn-lg" id="create-quiz-button">
+            Create New Quiz
+          </button>
+        </div>
       </div>
 
-     <!-- Quiz Card -->
+      <!-- Quiz Card -->
       <div class="row">
         <div class="col-12">
           <div class="quiz-card">
@@ -252,10 +251,29 @@ a, a:hover {
         <!-- Quiz Progress Widget -->
         <div class="widget">
           <h5>Quiz Progress</h5>
-          <!-- Example of a quiz progress -->
-          <div class="progress-percentage">Quiz 1 - 75%</div>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-circle">
+            <svg viewBox="0 0 36 36" class="circular-chart">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                fill="none"
+                stroke="#eee"
+                stroke-width="3.8"
+                stroke-linecap="round"
+              />
+              <path class="circle"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                fill="none"
+                stroke="#7e57c2"
+                stroke-width="3.8"
+                stroke-dasharray="84, 100"
+                stroke-linecap="round"
+              />
+              <text x="18" y="20.35" class="percentage" fill="#7e57c2" font-size="4" text-anchor="middle">84%</text>
+            </svg>
           </div>
           <!-- You can repeat the progress bar for other quizzes -->
         </div>
@@ -293,6 +311,15 @@ a, a:hover {
   $(document).ready(function() {
     $('#create-quiz-button').click(function() {
       $('#quizCreationModal').modal('show');
+    });
+
+    // Update progress bars dynamically
+    $('.circle').each(function() {
+      var $this = $(this);
+      var percentage = $this.parent().find('.percentage').text().slice(0, -1);
+      var circumference = 2 * Math.PI * 15.9155;
+      var progress = circumference * (percentage / 100);
+      $this.css('stroke-dasharray', progress + ' ' + circumference);
     });
   });
 </script>

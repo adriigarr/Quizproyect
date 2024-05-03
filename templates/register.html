@@ -6,7 +6,7 @@
 <title>Sign Up</title>
 <style>
 body {
-  position: relative; /* Ensures the logo can be positioned absolutely within it */
+  position: relative;
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -18,7 +18,7 @@ body {
   flex-direction: row-reverse;
 }
 .left-panel {
-  background-color: #7e57c2; /* Purple color for the left panel */
+  background-color: #7e57c2;
   color: white;
   flex: 1;
   display: flex;
@@ -71,31 +71,51 @@ body {
 .signup-box h2 {
   text-align: center;
   color: #333;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
 }
 .signup-form {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
 }
-.signup-form input {
-  padding: 15px;
-  margin-bottom: 15px;
+.signup-form input, .signup-form select {
+  padding: 12px 15px; /* Slightly reduced padding to fit the design */
+  margin-bottom: 15px; /* Keeps consistent space between inputs */
   border: 1px solid #ccc;
   border-radius: 5px;
+  width: calc(100% - 10px); /* Adjust width calculation if necessary */
+  box-sizing: border-box; /* Includes padding and border in the width */
+}
+.signup-form select {
+  -webkit-appearance: none; /* Removes default styling */
+  -moz-appearance: none;
+  appearance: none;
+  background: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat 95% center, #fff;
+  cursor: pointer;
 }
 .terms-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
+
 .terms-container input[type="checkbox"] {
-  margin-right: 5px;
+    -webkit-appearance: checkbox; /* Adjust appearance for visibility */
+    width: 20px; /* Sets a specific size for the checkbox */
+    height: 20px; /* Sets a specific size for the checkbox */
+    margin: 0 10px 0 0; /* Adjusts spacing around the checkbox */
+    cursor: pointer;
+    accent-color: #7e57c2; /* Customize the color to match your theme */
 }
+
 .terms-container label {
-  font-size: 0.9em;
+    font-size: 0.9em; /* Adjust size as necessary */
+    margin-left: -5px; /* Adjusts the positioning of the label text */
+    color: #333; /* Ensures the text color is visible and matches your theme */
 }
+
 .signup-button {
-  background-color: #7e57c2; /* Purple color */
+  background-color: #7e57c2;
   color: white;
   border: none;
   padding: 15px;
@@ -109,10 +129,10 @@ body {
 }
 #logo {
   position: absolute;
-  top: 10px; /* Adjust the value as needed */
-  left: 10px; /* Adjust the value as needed */
-  width: 100px; /* Adjust the width as needed */
-  height: auto; /* Keeps the aspect ratio of the image */
+  top: 10px;
+  left: 10px;
+  width: 100px;
+  height: auto;
 }
 </style>
 </head>
@@ -132,15 +152,23 @@ body {
     <div class="signup-box">
       <h2>Create Free Account</h2>
       <form action="{{ url_for('register') }}" method="post" class="signup-form">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="text" name="surname" placeholder="Surname" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <div class="terms-container">
-          <input type="checkbox" id="terms" name="terms" required>
-          <label for="terms">I have read the Terms & Conditions</label>
-        </div>
-        <button type="submit" class="signup-button">Sign Up</button>
+          <input type="text" name="name" placeholder="Name" required>
+          <input type="text" name="surname1" placeholder="Surname" required>
+          <input type="text" name="surname2" placeholder="Second Surname">
+          <select name="gender" required>
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+          </select>
+          <input type="date" name="dob" placeholder="Date of Birth" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <div class="terms-container">
+              <input type="checkbox" id="terms" name="terms" required>
+              <label for="terms">I have read the Terms & Conditions</label>
+          </div>
+          <button type="submit" class="signup-button">Sign Up</button>
       </form>
     </div>
   </div>
