@@ -171,14 +171,94 @@ a, a:hover {
 .modal-content {
     height: 100%;
 }
+.widget h5 {
+  color: #7e57c2;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.current-date h1 {
+  color: #7e57c2;
+  font-size: 1.4em;
+  font-weight: 300;
+  text-align: center;
+}
+.week-days {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 10px 0;
+  color: #7e57c2;
+}
+.weeks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.weeks div {
+  display: flex;
+  justify-content: space-around;
+}
+.weeks span {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+}
+.weeks span.active {
+  background-color: #7e57c2;
+  border-radius: 50%;
+}
+.weeks span.event::after {
+  content: '•';
+  position: absolute;
+  color: #f78536;
+  font-size: larger;
+  top: 0;
+  right: 0;
+}
+.last-month {
+  color: #bbb;
+}
+@media (max-width: 992px) {
+  .right-sidebar {
+    font-size: 14px;
+  }
+  .current-date h1 {
+    font-size: 1.2em;
+  }
+  .week-days {
+    padding: 5px 0;
+  }
+  .weeks span {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .right-sidebar {
+    font-size: 12px;
+  }
+  .current-date h1 {
+    font-size: 1em;
+  }
+  .week-days {
+    padding: 2px 0;
+  }
+  .weeks span {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+  }
+}
 </style>
-
 </head>
 <body>
 <div class="container-fluid h-100">
   <div class="row h-100">
     <!-- Sidebar -->
-    <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+    <nav class="col-12 col-md-3 col-lg-2 d-md-block sidebar collapse">
       <div class="sidebar-logo d-flex align-items-center">
         <img src="/static/logo.png" alt="Logo">
         <span class="logo-text">Quizs</span>
@@ -212,18 +292,13 @@ a, a:hover {
     </nav>
 
     <!-- Main content -->
-    <main role="main" class="col-md-6 col-lg-8 px-4">
-      <!-- Dashboard Header -->
+    <main role="main" class="col-12 col-md-6 col-lg-8 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">My Quizzes</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <button class="btn btn-purple btn-lg" id="create-quiz-button">
-            Create New Quiz
-          </button>
+          <button class="btn btn-purple btn-lg" id="create-quiz-button">Create New Quiz</button>
         </div>
       </div>
-
-      <!-- Quiz Card -->
       <div class="row">
         <div class="col-12">
           <div class="quiz-card">
@@ -231,24 +306,41 @@ a, a:hover {
             <div class="quiz-card-body">
               <h5 class="card-title">Quiz Template</h5>
               <p class="card-text">Click here to see how to create a quiz! </p>
-              <a class="btn btn-purple btn-lg" id="goto-quiz-button" href="{{ url_for('pregunta1') }}">
-                Go to Quiz
-              </a>
+              <a class="btn btn-purple btn-lg" id="goto-quiz-button" href="{{ url_for('pregunta1') }}">Go to Quiz</a>
             </div>
           </div>
         </div>
-        <!-- More quizzes here -->
       </div>
     </main>
+
     <!-- Right Sidebar -->
-    <aside class="col-md-3 d-none d-md-block right-sidebar">
+    <aside class="col-12 col-md-3 col-lg-2 d-none d-md-block right-sidebar">
       <div class="right-sidebar-sticky">
-        <!-- Calendar Widget -->
         <div class="widget">
           <h5>Calendar</h5>
-          <!-- Placeholder for Calendar Widget -->
+          <div class="current-date">
+            <h1>Friday 15th</h1>
+            <h1>January 2016</h1>
+          </div>
+          <div class="current-month">
+            <ul class="week-days">
+              <li>MON</li>
+              <li>TUE</li>
+              <li>WED</li>
+              <li>THU</li>
+              <li>FRI</li>
+              <li>SAT</li>
+              <li>SUN</li>
+            </ul>
+            <div class="weeks">
+              <div class="first"> <span class="last-month">28</span> <span class="last-month">29</span> <span class="last-month">30</span> <span class="last-month">31</span> <span>01</span> <span>02</span> <span>03</span> </div>
+              <div class="second"> <span>04</span> <span>05</span> <span class="event">06</span> <span>07</span> <span>08</span> <span>09</span> <span>10</span> </div>
+              <div the="third"> <span>11</span> <span>12</span> <span>13</span> <span>14</span> <span class="active">15</span> <span>16</span> <span>17</span> </div>
+              <div class="fourth"> <span>18</span> <span>19</span> <span>20</span> <span>21</span> <span>22</span> <span>23</span> <span>24</span> </div>
+              <div class="fifth"> <span>25</span> <span>26</span> <span>27</span> <span>28</span> <span>29</span> <span>30</span> <span>31</span> </div>
+            </div>
+          </div>
         </div>
-        <!-- Quiz Progress Widget -->
         <div class="widget">
           <h5>Quiz Progress</h5>
           <div class="progress-circle">
@@ -272,12 +364,10 @@ a, a:hover {
                 stroke-dasharray="84, 100"
                 stroke-linecap="round"
               />
-              <text x="18" y="20.35" class="percentage" fill="#7e57c2" font-size="4" text-anchor="middle">84%</text>
+              <text x="18" y="20.35" class="percentage">84%</text>
             </svg>
           </div>
-          <!-- You can repeat the progress bar for other quizzes -->
         </div>
-        <!-- Other widgets can go here -->
       </div>
     </aside>
   </div>
@@ -290,22 +380,42 @@ a, a:hover {
       <div class="modal-header">
         <h5 class="modal-title" id="quizCreationModalLabel">Create New Quiz</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Here you can add forms or any input fields required for creating a new quiz.</p>
+        <form id="quiz-form">
+          <div class="form-group">
+            <label for="quizName">Quiz Name:</label>
+            <input type="text" class="form-control" id="quizName" placeholder="Enter quiz name">
+          </div>
+          <div class="form-group">
+            <label for="quizDescription">Description:</label>
+            <input type="text" class="form-control" id="quizDescription" placeholder="Describe your quiz">
+          </div>
+          <div class="form-group">
+            <label for="quizType">Quiz Type:</label>
+            <select class="form-control" id="quizType">
+              <option value="multipleChoice">Multiple Choice</option>
+              <!-- Add other types as necessary -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="quizInfo">Quiz Information:</label>
+            <textarea class="form-control" id="quizInfo" rows="5" placeholder="Enter detailed quiz information"></textarea>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-purple">Save Changes</button>
+        <button type="button" class="btn btn-purple" onclick="saveQuiz()">Save Changes</button>
+        <button type="button" class="btn btn-purple" onclick="window.location.href='{{ url_for('pregunta1') }}'">Play Quiz</button>
       </div>
     </div>
   </div>
 </div>
 
-
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- jQuery and Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -323,7 +433,14 @@ a, a:hover {
       $this.css('stroke-dasharray', progress + ' ' + circumference);
     });
   });
-</script>
 
+  function saveQuiz() {
+    // You might want to collect data here and send it to your server
+    alert('Quiz saved successfully!');
+  }
+
+</script>
 </body>
 </html>
+
+<!-- {{ url_for('pregunta1') }} -->
